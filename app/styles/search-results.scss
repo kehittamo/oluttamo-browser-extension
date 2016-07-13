@@ -1,0 +1,9 @@
+#oluttamo-content{
+  .search-results{
+      height: 100vh;
+      overflow: auto;
+      position: fixed;
+      width: 30vw;
+      z-index: 6;
+  }
+}

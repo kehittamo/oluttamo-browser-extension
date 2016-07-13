@@ -1,0 +1,27 @@
+{
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "chrome": true,
+    "crypto": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+		"camelcase": 2,
+    "block-scoped-var": 2,
+    "no-invalid-this": 2,
+    "comma-dangle": [1, "always-multiline"],
+    "curly": [1, "multi-line"],
+    "indent": [1, 4],
+    "no-mixed-requires": [2],
+    "no-redeclare": [2],
+    "no-trailing-spaces": 1,
+    "no-underscore-dangle": [0],
+    "quotes": [1, "double", "avoid-escape"],
+    "semi": 2,
+    "max-len": 0,
+    "no-console": 0,
+    "new-cap": ["error", { "properties": true }],
+  }
+}
