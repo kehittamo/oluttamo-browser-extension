@@ -11,6 +11,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
     createMenu();
 });
 
+// TODO: executeScript only if shortcut is "search-beer"
 chrome.commands.onCommand.addListener(shortcut => {
     console.log("shortcut: ", shortcut);
     chrome.tabs.executeScript(null, {
@@ -19,8 +20,8 @@ chrome.commands.onCommand.addListener(shortcut => {
     });
 });
 
+// TODO: executeScript only if changes include SEARCH_KEY_NAME
 chrome.storage.onChanged.addListener(function(changes, namespace) {
-    console.log("namespace: ", namespace);
     console.log("changes: ", changes);
     chrome.storage.local.get(SEARCH_KEY_NAME, (items) => {
         console.log(`Value: ${items[SEARCH_KEY_NAME]}`);
