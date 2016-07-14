@@ -12,6 +12,7 @@ You can already try this out: https://chrome.google.com/webstore/detail/oluttamo
 ## Firefox version
 Before we will port this to Firefox, this bug need to be squeezed
 * [Implement chrome.runtime.onInstalled](https://bugzilla.mozilla.org/show_bug.cgi?id=1252871)
+
 After that web should be [webextensionyet](http://www.arewewebextensionsyet.com/)
 
 ## Installation
