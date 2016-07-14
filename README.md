@@ -4,6 +4,9 @@ Work in progress!
 ## Generator
 * https://github.com/HaNdTriX/generator-chrome-extension-kickstart
 
+## Current problems
+* ratebeer.com does not provide https. So if you are using this extension in a page that uses https -> ratebeer iframe isn't  loading.
+
 ## Installation
 
 	$ npm install
