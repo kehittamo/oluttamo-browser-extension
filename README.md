@@ -1,5 +1,7 @@
-# Oluttamo
+# Oluttamo aka. find beer info from ratebeer
 Work in progress!
+
+You can already try this out: https://chrome.google.com/webstore/detail/oluttamo-find-beer-info/pphmlagnoljkcfghondlachhdionjjfi
 
 ## Generator
 * https://github.com/HaNdTriX/generator-chrome-extension-kickstart
