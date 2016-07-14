@@ -9,6 +9,7 @@ function search(){
         createRootDiv(()=>{
             const httpRequest = new XMLHttpRequest();
             httpRequest.onreadystatechange = (data) => {
+                // TODO: handle errors :)
                 if(httpRequest.readyState === XMLHttpRequest.DONE && httpRequest.status === 200) {
                     const json = JSON.parse(httpRequest.responseText);
                     render(<SearchResults q={searchQuery} data={json}/>, document.getElementById(REACT_ROOT_DIV_ID));

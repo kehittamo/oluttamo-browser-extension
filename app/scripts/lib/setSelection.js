@@ -3,7 +3,7 @@ import getCurrentSearchString from "./getCurrentSearchString";
 import search from "../search";
 
 function setSelection(selectionText) {
-    getCurrentSearchString((searchQuery) =>{
+    getCurrentSearchString((searchQuery) => {
         if (searchQuery === selectionText){
             search();
         } else {

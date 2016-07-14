@@ -3,7 +3,7 @@
 import { SEARCH_KEY_NAME, OLUTTAMO_SEARCH_SHORTCUT } from "./constants";
 
 // Enable chromereload by uncommenting this line:
-import "./lib/livereload";
+// import "./lib/livereload";
 
 import createMenu from "./lib/contextMenus";
 
