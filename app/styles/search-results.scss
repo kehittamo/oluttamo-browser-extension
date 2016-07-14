@@ -1,9 +1,102 @@
+// Colors
+$brand-primary: #8CF0C8;
+$brand-secondary: #9669AF;
+$text-white: #FFFFFF;
+$z-index: 99999;
+
 #oluttamo-content{
   .search-results{
-      height: 100vh;
+    color: $text-white;
+    font-family: "Open Sans", Helvetica, sans-serif;
+    font-size: 13px;
+    h1{
+      color: $text-white;
+      font-size: 32px;
+      margin: 10px 0 15px;
+      text-transform: uppercase;
+    }
+    .hidden{
+      display: none !important;
+    }
+    .close-btn{
+      background-color: $brand-secondary;
+      border: none;
+      border-radius: 3px;
+      color: $text-white;
+      cursor: pointer;
+      display: inline-block;
+      float: right;
+      font-size: 13px;
+      margin-bottom: 1rem;
+      padding: .5rem 1rem;
+    }
+    .inline{
+      display: inline;
+    }
+    ul{
+      line-height: 1.75;
+      li{
+        display: block;
+        &.active span, span:hover, a:hover{
+          color: $brand-secondary;
+          font-size: 16px;
+          font-weight: 800;
+        }
+        span{
+          cursor: pointer;
+        }
+      }
+    }
+    a{
+      color: $text-white;
+      display: block;
+    }
+  *::selection{
+      background: $brand-primary;
+    }
+    &__wrapper{
+      background-color: rgba(25, 25, 25, 0.8);
+      bottom: 0;
+      left: 0;
       overflow: auto;
+      padding: 1rem 10%;
       position: fixed;
-      width: 30vw;
-      z-index: 6;
+      right: 0;
+      top:0;
+      z-index: $z-index;
+    }
+    &__bottom-bar{
+      align-items: center;
+      background-color: $brand-secondary;
+      bottom: 0;
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      padding: 0 10px;
+      position: fixed;
+      text-align: center;
+      width: 100vw;
+      z-index: $z-index;
+      @media all and (min-width: 768px){
+        width: auto;
+      }
+      a{
+        &:hover{
+          font-weight: 800;
+        }
+      }
+    }
+    &__no-results{
+      background-color: $brand-secondary;
+      font-size: 24px;
+      margin: 3rem 0;
+      padding: 2rem;
+      strong{
+        display: block;
+      }
+      a{
+        display: inline-block;
+      }
+    }
   }
 }
