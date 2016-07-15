@@ -14,10 +14,12 @@ chrome.runtime.onInstalled.addListener((details) => {
 chrome.commands.onCommand.addListener(shortcut => {
     if (shortcut === OLUTTAMO_SEARCH_SHORTCUT){
         setBadgeDetails("...", "#8CF0C8");
-        chrome.tabs.executeScript(null, {
-            file: "./scripts/getSelection.js",
-            runAt: "document_end",
-        });
+        if(chrome.tabs){
+            chrome.tabs.executeScript(null, {
+                file: "./scripts/getSelection.js",
+                runAt: "document_end",
+            });
+        }
     }
 });
 
