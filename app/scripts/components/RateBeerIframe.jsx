@@ -21,10 +21,10 @@ const RateBeerIframe = React.createClass({
     render(){
         const {activeBeerId} = this.props;
         const rateBeerUrl = `${RATE_BEER_URL}${RATE_BEER_GET_BEER_PREFIX}${activeBeerId}/`;
-        // Set iframe width to 75% of window width
-        const iframeWidth = parseInt(this.state.windowWidth * 0.75, 10);
-        // Set iframe height to 9/16 of width
-        const iframeHeight = parseInt(iframeWidth * (9/16), 10);
+        // Set iframe width to 85% of window width
+        const iframeWidth = parseInt(this.state.windowWidth * 0.85, 10);
+        // Set iframe height to 10/21 of width
+        const iframeHeight = parseInt(iframeWidth * (10/21), 10);
         const iframeElement = this.state.protocol === "https:" ? (
           <div className="search-results__no-results">
             <strong>Oh noes, we can't load iframe from <a href={rateBeerUrl} target="_blank">{rateBeerUrl}</a> because your current site is using "https"-protocol! But you can open the link :)</strong>
