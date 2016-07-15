@@ -1,4 +1,5 @@
-import setSelection from "./setSelection";
+import setData from "./setData";
+import { SEARCH_KEY_NAME } from "../constants";
 
 export default function createMenu() {
     const menus = [
@@ -20,5 +21,5 @@ export default function createMenu() {
 }
 
 chrome.contextMenus.onClicked.addListener(({ menuItemId, selectionText }) => {
-    setSelection(selectionText);
+    setData(SEARCH_KEY_NAME, selectionText);
 });
