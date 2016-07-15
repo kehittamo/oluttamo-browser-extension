@@ -1,8 +1,13 @@
 {
-  "name": "Oluttamo",
-  "private": true,
-  "version": "0.1.1",
-  "description": "Search beer info!",
+  "name": "oluttamo-browser-extension",
+  "private": false,
+  "version": "0.1.2",
+  "author": "Janne Saarela / Digitoimisto Kehittämö <janne.saarela@kehittamo.fi>",
+  "description": "Search beer info from ratebeer.com!",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kehittamo/oluttamo-browser-extension.git"
+  },
   "scripts": {
     "start": "npm run dev:chrome",
     "build": "npm run build:chrome",
