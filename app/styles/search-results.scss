@@ -29,6 +29,10 @@ $z-index: 99999;
       font-size: 13px;
       margin-bottom: 1rem;
       padding: .5rem 1rem;
+      &:hover{
+        background-color: $brand-primary;
+        transition: all .2s;
+      }
     }
     .inline{
       display: inline;
@@ -39,7 +43,6 @@ $z-index: 99999;
         display: block;
         &.active span, span:hover, a:hover{
           color: $brand-secondary;
-          font-size: 16px;
           font-weight: 800;
         }
         span{
@@ -59,11 +62,14 @@ $z-index: 99999;
       bottom: 0;
       left: 0;
       overflow: auto;
-      padding: 1rem 10%;
+      padding: 15px;
       position: fixed;
       right: 0;
       top:0;
       z-index: $z-index;
+      @media all and (min-width: 768px){
+        padding: 15px 5%;
+      }
     }
     &__bottom-bar{
       align-items: center;
@@ -93,6 +99,7 @@ $z-index: 99999;
       padding: 2rem;
       strong{
         display: block;
+        margin-bottom: 15px;
       }
       a{
         display: inline-block;
