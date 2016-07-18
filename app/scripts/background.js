@@ -6,16 +6,19 @@ import { BEER_KEY_NAME, SEARCH_KEY_NAME, OLUTTAMO_SEARCH_SHORTCUT } from "./cons
 // import "./lib/livereload";
 
 import createMenu from "./lib/contextMenus";
+import browserObject from "./lib/browserObject";
 
-chrome.runtime.onInstalled.addListener((details) => {
-    createMenu();
-});
+if(browserObject.runtime.onInstalled){
+    browserObject.runtime.onInstalled.addListener((details) => {
+        createMenu();
+    });
+}
 
-chrome.commands.onCommand.addListener(shortcut => {
+browserObject.commands.onCommand.addListener(shortcut => {
     if (shortcut === OLUTTAMO_SEARCH_SHORTCUT){
         setBadgeDetails("...", "#8CF0C8");
-        if(chrome.tabs){
-            chrome.tabs.executeScript(null, {
+        if(browserObject.tabs){
+            browserObject.tabs.executeScript(null, {
                 file: "./scripts/getSelection.js",
                 runAt: "document_end",
             });
@@ -23,10 +26,10 @@ chrome.commands.onCommand.addListener(shortcut => {
     }
 });
 
-chrome.storage.onChanged.addListener((changes, namespace) => {
+browserObject.storage.onChanged.addListener((changes, namespace) => {
     if (changes[SEARCH_KEY_NAME]){
         setBadgeDetails("...", "#8CF0C8");
-        chrome.tabs.executeScript(null, {
+        browserObject.tabs.executeScript(null, {
             file: "./scripts/search.js",
             runAt: "document_end",
         });
@@ -36,6 +39,6 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 });
 
 function setBadgeDetails(text, color){
-    chrome.browserAction.setBadgeText({text: text});
-    chrome.browserAction.setBadgeBackgroundColor({color: color});
+    browserObject.browserAction.setBadgeText({text: text});
+    browserObject.browserAction.setBadgeBackgroundColor({color: color});
 }

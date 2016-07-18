@@ -7,7 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
             var ln = links[i];
             var location = ln.href;
             ln.onclick = function () {
-                chrome.tabs.create({active: true, url: location});
+                if(chrome.tabs){
+                    chrome.tabs.create({active: true, url: location});
+                } else if(browser.tabs){
+                    browser.tabs.create({active: true, url: location});
+                }
             };
         })();
     }
