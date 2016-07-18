@@ -18,7 +18,9 @@ function search(){
                     const json = JSON.parse(httpRequest.responseText);
                     setData(BEER_KEY_NAME, {query: searchQuery, data: json, url: window.location.href});
                     addSearchResults(searchQuery, json);
-                };
+                } else if(httpRequest.status === 404){
+                    addSearchResults(searchQuery, [], "404");
+                }
             };
             httpRequest.open("GET", `${BEER_API_URL}${BEER_API_SEARCH_PREFIX}${searchQuery}`);
             httpRequest.send();
@@ -27,9 +29,9 @@ function search(){
 }
 
 // render search results react element
-function addSearchResults(searchQuery, data, showOnlyFooter=false){
+function addSearchResults(searchQuery, data, error=false){
     createRootDiv(()=>{
-        render(<SearchResults q={searchQuery} data={data} showOnlyFooter={showOnlyFooter}/>, document.getElementById(REACT_ROOT_DIV_ID));
+        render(<SearchResults q={searchQuery} data={data} error={error}/>, document.getElementById(REACT_ROOT_DIV_ID));
     });
 }
 
