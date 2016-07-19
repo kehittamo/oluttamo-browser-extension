@@ -43,7 +43,7 @@ $z-index: 99999;
         display: block;
         &.active span, span:hover, a:hover{
           color: $brand-secondary;
-          font-weight: 800;
+          transition: .3s all;
         }
         span{
           cursor: pointer;
