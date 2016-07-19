@@ -8,7 +8,7 @@
     "description": "The short_name (maximum of 12 characters recommended) is a short version of the app's name."
   },
   "appDescription": {
-    "message": "Find beer info from ratebeer.com! (just select text and press Alt + Shift + B)",
+    "message": "Find beer info from ratebeer.com! (just select text and press Alt + B)",
     "description": "The description of the application"
   },
   "browserActionTitle": {
