@@ -6,9 +6,6 @@ You can already try this out: https://chrome.google.com/webstore/detail/oluttamo
 ## Generator
 * https://github.com/HaNdTriX/generator-chrome-extension-kickstart
 
-## Current problems
-* ratebeer.com does not provide https. So if you are using this extension in a page that uses https -> ratebeer iframe isn't  loading.
-
 ## Firefox version
 Before we will port this to Firefox, this bug need to be squeezed
 * [Implement chrome.runtime.onInstalled](https://bugzilla.mozilla.org/show_bug.cgi?id=1252871)
