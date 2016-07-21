@@ -22,7 +22,9 @@ function search(){
                     addSearchResults(searchQuery, [], "404");
                 }
             };
-            httpRequest.open("GET", `${BEER_API_URL}${BEER_API_SEARCH_PREFIX}${searchQuery}`);
+            // Replace all forward slashes with %20
+            const escapedQuery = searchQuery.replace(/\s{0,}\/\s{0,}/g, "%20");
+            httpRequest.open("GET", `${BEER_API_URL}${BEER_API_SEARCH_PREFIX}${escapedQuery}`);
             httpRequest.send();
         }
     });
