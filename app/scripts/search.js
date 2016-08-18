@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import SearchResults from "./components/SearchResults";
 import { BEER_KEY_NAME, SEARCH_KEY_NAME, REACT_ROOT_DIV_ID } from "./constants";
-import getCurrentSearchString from "./lib/getCurrentSearchString";
+import getData from "./lib/getData";
 import setData from "./lib/setData";
 import ajaxSearch from "./lib/ajaxSearch";
 
@@ -10,22 +10,38 @@ import ajaxSearch from "./lib/ajaxSearch";
 * Search beer data from Oluttamo API
 */
 function search(){
-    getCurrentSearchString((searchQuery) =>{
-        if(searchQuery){
-            ajaxSearch(searchQuery)
-            .then((result) => {
-                if(result.length === 0){
-                    addSearchResults(searchQuery, [], "404");
-                } else {
-                    setData(BEER_KEY_NAME, {query: searchQuery, data: result, url: window.location.href});
-                    addSearchResults(searchQuery, result);
-                }
-            })
-            .catch((err) => {
-                // TODO: better error message
-                console.error("Oh noes, something went wrong while fetching beers :(", err);
-            });
+    let q = "";
+    getData(SEARCH_KEY_NAME)
+    .then((searchQuery) => {
+        q = searchQuery;
+        if(!searchQuery){
+            throw{
+                err: "no search query found!",
+            };
         }
+        return searchQuery;
+    })
+    .then((searchQuery) => {
+        return getData(searchQuery);
+    })
+    .then((resultFromStorage) => {
+        if(resultFromStorage && resultFromStorage.data){
+            return resultFromStorage.data;
+        } else {
+            return ajaxSearch(q);
+        }
+    })
+    .then((result) => {
+        if(result.length === 0){
+            addSearchResults(q, [], "404");
+        } else {
+            setData(BEER_KEY_NAME, {query: q, data: result, url: window.location.href});
+            addSearchResults(q, result);
+        }
+    })
+    .catch((err) => {
+        // TODO: better error message
+        console.error("Oh noes, something went wrong while fetching beers :(", err);
     });
 }
 
