@@ -1,9 +1,10 @@
 import React from "react";
 import { render } from "react-dom";
 import SearchResults from "./components/SearchResults";
-import { BEER_KEY_NAME, SEARCH_KEY_NAME, REACT_ROOT_DIV_ID, BEER_API_URL, BEER_API_SEARCH_PREFIX } from "./constants";
+import { BEER_KEY_NAME, SEARCH_KEY_NAME, REACT_ROOT_DIV_ID } from "./constants";
 import getCurrentSearchString from "./lib/getCurrentSearchString";
 import setData from "./lib/setData";
+import ajaxSearch from "./lib/ajaxSearch";
 
 /*
 * Search beer data from Oluttamo API
@@ -11,21 +12,19 @@ import setData from "./lib/setData";
 function search(){
     getCurrentSearchString((searchQuery) =>{
         if(searchQuery){
-            const httpRequest = new XMLHttpRequest();
-            httpRequest.onreadystatechange = (data) => {
-                // TODO: handle errors :)
-                if(httpRequest.readyState === XMLHttpRequest.DONE && httpRequest.status === 200) {
-                    const json = JSON.parse(httpRequest.responseText);
-                    setData(BEER_KEY_NAME, {query: searchQuery, data: json, url: window.location.href});
-                    addSearchResults(searchQuery, json);
-                } else if(httpRequest.status === 404){
+            ajaxSearch(searchQuery)
+            .then((result) => {
+                if(result.length === 0){
                     addSearchResults(searchQuery, [], "404");
+                } else {
+                    setData(BEER_KEY_NAME, {query: searchQuery, data: result, url: window.location.href});
+                    addSearchResults(searchQuery, result);
                 }
-            };
-            // Replace all forward slashes with %20
-            const escapedQuery = searchQuery.replace(/\s{0,}\/\s{0,}/g, "%20");
-            httpRequest.open("GET", `${BEER_API_URL}${BEER_API_SEARCH_PREFIX}${escapedQuery}`);
-            httpRequest.send();
+            })
+            .catch((err) => {
+                // TODO: better error message
+                console.error("Oh noes, something went wrong while fetching beers :(", err);
+            });
         }
     });
 }

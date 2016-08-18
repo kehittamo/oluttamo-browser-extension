@@ -2,24 +2,34 @@ import React from "react";
 import SearchResult from "./SearchResult";
 import RateBeerIframe from "./RateBeerIframe";
 import SearchResultBottomBar from "./SearchResultBottomBar";
+import TextSearch from "./TextSearch";
 
 const SearchResults = React.createClass({
     getInitialState: function() {
         return {
             activeBeerId: null,
             showResults: true,
+            data: [],
+            q: "",
+            error: null,
         };
     },
     componentWillMount: function(){
         document.addEventListener("keydown", this.handleKeyDown, false);
     },
     componentDidMount: function() {
-        const {data} = this.props;
+        const {q, data, error} = this.props;
+        console.log("Q: ", q);
         if(data.length > 0){
             this.setState({
                 activeBeerId: data[0].ratebeerId,
             });
         }
+        this.setState({
+            data,
+            q,
+            error,
+        });
     },
     componentWillUnmount: function(){
         document.removeEventListener("keydown", this.handleKeyDown, false);
@@ -40,14 +50,31 @@ const SearchResults = React.createClass({
             this.toggleResults();
         }
     },
+    handleTextSearch(q, data, error=false){
+        if(!error && data.length > 0){
+            this.setState({
+                activeBeerId: data[0].ratebeerId,
+                data,
+                q,
+            });
+        } else if(error){
+            this.setState({
+                activeBeerId: null,
+                error,
+                data,
+                q,
+            });
+        }
+    },
     render(){
-        const {data, q, error} = this.props;
+        const {q, data, error} = this.state;
         const iframe = this.state.activeBeerId ? <RateBeerIframe activeBeerId={this.state.activeBeerId} /> : null;
         const noResults = (data.length === 0 || error) ? <div className="search-results__no-results">Nothing found! :(</div> : null;
         return(
             <div className="search-results" >
                 <section className={this.state.showResults ? "search-results__wrapper show" : "search-results__wrapper hidden"}>
                     <span className="close-btn" onClick={this.toggleResults}>Close</span>
+                    <TextSearch beerResults={this.handleTextSearch} />
                     {iframe}
                     <h1>Search results for: "{q}"</h1>
                     {noResults}
