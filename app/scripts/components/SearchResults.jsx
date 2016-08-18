@@ -19,7 +19,6 @@ const SearchResults = React.createClass({
     },
     componentDidMount: function() {
         const {q, data, error} = this.props;
-        console.log("Q: ", q);
         if(data.length > 0){
             this.setState({
                 activeBeerId: data[0].ratebeerId,
@@ -56,6 +55,7 @@ const SearchResults = React.createClass({
                 activeBeerId: data[0].ratebeerId,
                 data,
                 q,
+                error: null,
             });
         } else if(error){
             this.setState({
