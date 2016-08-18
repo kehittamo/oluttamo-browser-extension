@@ -10,11 +10,11 @@ const TextSearch = React.createClass({
     },
     getInitialState: function() {
         return {
-            q: "",
+            q: this.props.q,
         };
     },
     componentDidUpdate(previousProps, previousState){
-        if(this.state.q !== previousProps.q){
+        if(this.state.q !== previousState.q && this.state.q !== ""){
             setData(SEARCH_KEY_NAME, this.state.q);
         }
     },
@@ -26,7 +26,7 @@ const TextSearch = React.createClass({
                     minLength={1}
                     debounceTimeout={500}
                     onChange={event => this.setState({q: event.target.value})}
-                    value={this.props.q} />
+                    value={this.state.q} />
             </div>
         );
     },

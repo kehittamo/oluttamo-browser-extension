@@ -1,6 +1,5 @@
 import { SEARCH_RESULTS_OPEN_KEY_NAME, SEARCH_KEY_NAME, BEER_KEY_NAME } from "../constants";
 import getData from "./getData";
-import search from "../search";
 import browserObject from "./browserObject";
 
 function setData(key, data) {
@@ -13,11 +12,7 @@ function setData(key, data) {
     case SEARCH_KEY_NAME:
         getData((SEARCH_KEY_NAME))
         .then((searchQuery) => {
-            if (searchQuery === data){
-                search();
-            } else {
-                browserObject.storage.local.set({[SEARCH_KEY_NAME]: data}, function() {});
-            }
+            browserObject.storage.local.set({[SEARCH_KEY_NAME]: data}, function() {});
         })
         .catch((err) => {
             console.error(err);

@@ -27,7 +27,7 @@ browserObject.commands.onCommand.addListener(shortcut => {
 });
 
 browserObject.storage.onChanged.addListener((changes, namespace) => {
-    if (changes[SEARCH_KEY_NAME]){
+    if (changes[SEARCH_KEY_NAME] && changes[SEARCH_KEY_NAME].newValue !== ""){
         // setBadgeDetails("...", "#8CF0C8");
         browserObject.tabs.executeScript(null, {
             file: "./scripts/search.js",
