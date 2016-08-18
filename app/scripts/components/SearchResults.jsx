@@ -9,9 +9,6 @@ const SearchResults = React.createClass({
         return {
             activeBeerId: null,
             showResults: true,
-            data: [],
-            q: "",
-            error: null,
         };
     },
     componentWillMount: function(){
@@ -24,11 +21,6 @@ const SearchResults = React.createClass({
                 activeBeerId: data[0].ratebeerId,
             });
         }
-        this.setState({
-            data,
-            q,
-            error,
-        });
     },
     componentWillUnmount: function(){
         document.removeEventListener("keydown", this.handleKeyDown, false);
@@ -49,32 +41,15 @@ const SearchResults = React.createClass({
             this.toggleResults();
         }
     },
-    handleTextSearch(q, data, error=false){
-        if(!error && data.length > 0){
-            this.setState({
-                activeBeerId: data[0].ratebeerId,
-                data,
-                q,
-                error: null,
-            });
-        } else if(error){
-            this.setState({
-                activeBeerId: null,
-                error,
-                data,
-                q,
-            });
-        }
-    },
     render(){
-        const {q, data, error} = this.state;
+        const {q, data, error} = this.props;
         const iframe = this.state.activeBeerId ? <RateBeerIframe activeBeerId={this.state.activeBeerId} /> : null;
         const noResults = (data.length === 0 || error) ? <div className="search-results__no-results">Nothing found! :(</div> : null;
         return(
             <div className="search-results" >
                 <section className={this.state.showResults ? "search-results__wrapper show" : "search-results__wrapper hidden"}>
                     <span className="close-btn" onClick={this.toggleResults}>Close</span>
-                    <TextSearch beerResults={this.handleTextSearch} />
+                    <TextSearch q={q} />
                     {iframe}
                     <h1>Search results for: "{q}"</h1>
                     {noResults}

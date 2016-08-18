@@ -7,6 +7,7 @@ function setData(key, data) {
     switch (key) {
     case BEER_KEY_NAME:
         browserObject.storage.local.set({[BEER_KEY_NAME]: data}, function() {});
+        browserObject.storage.local.set({[data.query]: data}, function() {});
         break;
 
     case SEARCH_KEY_NAME:
