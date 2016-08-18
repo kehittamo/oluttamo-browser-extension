@@ -16,7 +16,7 @@ if(browserObject.runtime.onInstalled){
 
 browserObject.commands.onCommand.addListener(shortcut => {
     if (shortcut === OLUTTAMO_SEARCH_SHORTCUT){
-        setBadgeDetails("...", "#8CF0C8");
+        // setBadgeDetails("...", "#8CF0C8");
         if(browserObject.tabs){
             browserObject.tabs.executeScript(null, {
                 file: "./scripts/getSelection.js",
@@ -28,13 +28,13 @@ browserObject.commands.onCommand.addListener(shortcut => {
 
 browserObject.storage.onChanged.addListener((changes, namespace) => {
     if (changes[SEARCH_KEY_NAME]){
-        setBadgeDetails("...", "#8CF0C8");
+        // setBadgeDetails("...", "#8CF0C8");
         browserObject.tabs.executeScript(null, {
             file: "./scripts/search.js",
             runAt: "document_end",
         });
     } else if (changes[BEER_KEY_NAME]){
-        setBadgeDetails("<3", "#9669AF");
+        // setBadgeDetails("<3", "#9669AF");
     }
 });
 
