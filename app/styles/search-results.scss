@@ -1,6 +1,7 @@
 // Colors
 $brand-primary: #8CF0C8;
 $brand-secondary: #9669AF;
+$text-dark: #002832;
 $text-white: #FFFFFF;
 $z-index: 99999;
 
@@ -43,6 +44,7 @@ $z-index: 99999;
       width: 100%;
       li{
         display: block;
+        margin-bottom: 3px;
         &.active span, span:hover, a:hover{
           color: $brand-secondary;
           transition: .3s all;
@@ -60,7 +62,7 @@ $z-index: 99999;
       background: $brand-primary;
     }
     &__wrapper{
-      background-color: rgba(25, 25, 25, 0.8);
+      background-color: rgba(25, 25, 25, 0.85);
       bottom: 0;
       left: 0;
       overflow: auto;
@@ -85,13 +87,14 @@ $z-index: 99999;
       text-align: center;
       width: 100vw;
       z-index: $z-index;
+      &:hover{
+        background-color: lighten($brand-secondary, 10);
+      }
       @media all and (min-width: 768px){
         width: auto;
       }
       a{
-        &:hover{
-          font-weight: 800;
-        }
+        padding: 10px 0;
       }
     }
     &__no-results{
@@ -107,8 +110,12 @@ $z-index: 99999;
         display: inline-block;
       }
     }
+    &__search-wrap{
+        margin-bottom: 5px;
+    }
     input{
       border-radius: 3px;
+      color: $text-dark;
       padding: 4px;
     }
   }

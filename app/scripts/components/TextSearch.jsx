@@ -20,7 +20,7 @@ const TextSearch = React.createClass({
     },
     render(){
         return(
-            <div className="search">
+            <div className="search-results__search-wrap">
                 <strong>Search beers: </strong>
                 <DebounceInput
                     minLength={1}
