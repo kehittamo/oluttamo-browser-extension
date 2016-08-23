@@ -3,6 +3,7 @@ import SearchResult from "./SearchResult";
 import RateBeerIframe from "./RateBeerIframe";
 import SearchResultBottomBar from "./SearchResultBottomBar";
 import TextSearch from "./TextSearch";
+import CreateBeer from "./CreateBeer";
 
 const SearchResults = React.createClass({
     getInitialState: function() {
@@ -52,6 +53,7 @@ const SearchResults = React.createClass({
                     <TextSearch q={q} />
                     {iframe}
                     <h1>Search results for: "{q}"</h1>
+                    <CreateBeer />
                     {noResults}
                     <ul>
                         {data.map((beerData, i) => <SearchResult activeBeerId={this.state.activeBeerId} changeBeer={this.changeBeerUrl} key={i} beerData={beerData} />)}
