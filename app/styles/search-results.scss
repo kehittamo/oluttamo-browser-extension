@@ -1,6 +1,8 @@
 // Colors
+$alpha-black-bg: rgba(25, 25, 25, 0.85);
 $brand-primary: #8CF0C8;
 $brand-secondary: #9669AF;
+$red: #ff4242;
 $text-dark: #002832;
 $text-white: #FFFFFF;
 $z-index: 99999;
@@ -62,7 +64,7 @@ $z-index: 99999;
       background: $brand-primary;
     }
     &__wrapper{
-      background-color: rgba(25, 25, 25, 0.85);
+      background-color: $alpha-black-bg;
       bottom: 0;
       left: 0;
       overflow: auto;
@@ -114,9 +116,107 @@ $z-index: 99999;
         margin-bottom: 5px;
     }
     input{
-      border-radius: 3px;
       color: $text-dark;
-      padding: 4px;
+    }
+    input, button{
+        border-color: transparent;
+        border-radius: 3px;
+        border-style: none;
+        padding: 6px;
+    }
+    &__add-beer-form{
+        h4{
+            color: $text-white;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .hide{
+            display: none;
+        }
+        .show{
+            display: block;
+        }
+        .tintbiwlf{
+            margin: 0 0 10px;
+            width: 500px;
+        }
+        form.show{
+            background-color: $alpha-black-bg;
+            bottom: 0;
+            left: 0;
+            padding: 30px;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            top: 0;
+        }
+        input{
+            margin-bottom: 10px;
+            width: 350px;
+        }
+        input[type="text"]:disabled {
+            background: #dddddd;
+            cursor: not-allowed;
+        }
+        input[type="submit"]{
+            background-color: $brand-primary;
+            &:hover{
+                background-color: $brand-secondary;
+            }
+        }
+        input[type="submit"], button{
+            color: $text-white;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
+            max-width: 500px;
+            padding: 8px;
+            width: auto;
+        }
+        button{
+            background-color: $red;
+            font-size: 14px;
+            line-height: 1.5;
+            &:hover{
+                background-color: darken($red, 10);
+            }
+        }
+        input[type="submit"]{
+            margin-left: 5px;
+        }
+        label, input{
+            font-size: 14px;
+            display: block;
+            line-height: 1.5;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .info{
+            background-color: $brand-secondary;
+            color: $text-white;
+            margin: 5px auto;
+            padding: 10px;
+            width: 500px;
+            strong{
+                display: block;
+                margin-bottom: 5px;
+            }
+            p{
+                margin-bottom: 0;
+                margin-top: 0;
+            }
+        }
+        .success, .error{
+            color: $text-white;
+            margin-top: 25px;
+            padding: 10px;
+        }
+        .success{
+            background-color: $brand-primary;
+        }
+        .error{
+            background-color: $red;
+        }
     }
   }
 }
