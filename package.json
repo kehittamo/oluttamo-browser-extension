@@ -1,7 +1,7 @@
 {
   "name": "oluttamo-browser-extension",
   "private": false,
-  "version": "0.1.8",
+  "version": "0.1.9",
   "author": "Janne Saarela / Digitoimisto Kehittämö <janne.saarela@kehittamo.fi>",
   "description": "Search beer info from ratebeer.com!",
   "repository": {
