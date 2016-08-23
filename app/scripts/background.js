@@ -1,6 +1,7 @@
 "use strict";
 
 import { BEER_KEY_NAME, SEARCH_KEY_NAME, OLUTTAMO_SEARCH_SHORTCUT } from "./constants";
+import removeData from "./lib/removeData";
 
 // Enable chromereload by uncommenting this line:
 // import "./lib/livereload";
@@ -13,6 +14,13 @@ if(browserObject.runtime.onInstalled){
         createMenu();
     });
 }
+
+browserObject.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    // Remove old search query from storage if user reload page
+    if(tab.active && tab.status === "complete"){
+        removeData(SEARCH_KEY_NAME);
+    }
+});
 
 browserObject.commands.onCommand.addListener(shortcut => {
     if (shortcut === OLUTTAMO_SEARCH_SHORTCUT){
@@ -27,7 +35,7 @@ browserObject.commands.onCommand.addListener(shortcut => {
 });
 
 browserObject.storage.onChanged.addListener((changes, namespace) => {
-    if (changes[SEARCH_KEY_NAME] && changes[SEARCH_KEY_NAME].newValue !== ""){
+    if (changes[SEARCH_KEY_NAME] && changes[SEARCH_KEY_NAME].newValue && changes[SEARCH_KEY_NAME].newValue !== ""){
         // setBadgeDetails("...", "#8CF0C8");
         browserObject.tabs.executeScript(null, {
             file: "./scripts/search.js",
