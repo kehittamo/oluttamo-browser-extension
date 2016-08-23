@@ -4,7 +4,7 @@ import SearchResults from "./components/SearchResults";
 import { BEER_KEY_NAME, SEARCH_KEY_NAME, REACT_ROOT_DIV_ID } from "./constants";
 import getData from "./lib/getData";
 import setData from "./lib/setData";
-import ajaxSearch from "./lib/ajaxSearch";
+import {ajaxSearch} from "./lib/ajax";
 
 /*
 * Search beer data from Oluttamo API
